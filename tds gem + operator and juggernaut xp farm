@@ -24,6 +24,21 @@ print(67)
         return tonumber((text:gsub("[^%d%.]", "")))
     end
 spawn(function()
+while true do
+local Vim = game:GetService("VirtualInputManager")
+
+-- Press Space
+Vim:SendKeyEvent(true, Enum.KeyCode.Space, false, game)
+
+task.wait(0.1)
+
+-- Release Space
+Vim:SendKeyEvent(false, Enum.KeyCode.Space, false, game)
+wait(200)
+end
+end)
+
+spawn(function()
 while true do 
 if workspace:FindFirstChild("1") then
 print('67')
