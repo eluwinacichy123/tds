@@ -1,3 +1,6 @@
+while true do
+print("nigger")
+end
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
