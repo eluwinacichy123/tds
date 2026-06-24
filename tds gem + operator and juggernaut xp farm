@@ -1,3 +1,67 @@
+local player = game.Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.ResetOnSpawn = false
+screenGui.Parent = playerGui
+
+local count = 0
+
+-- Frame
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0, 250, 0, 150)
+frame.Position = UDim2.new(0.5, -125, 0.5, -75)
+frame.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+frame.BorderSizePixel = 0
+frame.Active = true
+frame.Draggable = true -- Makes the frame movable
+frame.Parent = screenGui
+
+-- Title
+local title = Instance.new("TextLabel")
+title.Size = UDim2.new(1, 0, 0, 30)
+title.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+title.TextColor3 = Color3.new(1, 1, 1)
+title.Text = "how many gems you made"
+title.Parent = frame
+
+-- Counter Label
+local label = Instance.new("TextLabel")
+label.Size = UDim2.new(1, -20, 0, 50)
+label.Position = UDim2.new(0, 10, 0, 40)
+label.BackgroundTransparency = 1
+label.TextColor3 = Color3.new(1, 1, 1)
+label.TextScaled = true
+label.Text = "Gems: 0"
+label.Parent = frame
+
+-- Button
+local button = Instance.new("TextButton")
+button.Size = UDim2.new(0.8, 0, 0, 40)
+button.Position = UDim2.new(0.1, 0, 1, -50)
+button.BackgroundColor3 = Color3.fromRGB(70, 120, 255)
+button.TextColor3 = Color3.new(1, 1, 1)
+button.Text = "Increase"
+button.Parent = frame
+local amountLabel1 = game:GetService("Players").LocalPlayer.PlayerGui.ReactGameTopGameDisplay.Frame.waveTimer.container.value
+
+local currentWave = 0
+local maxWave = 0
+
+local function updateWave()
+    local current, max = amountLabel1.Text:match("(%d+)%s*/%s*(%d+)")
+
+    wave = tonumber(current) or 0
+    maxWave = tonumber(max) or 0
+
+
+end
+
+-- Initial value
+updateWave()
+
+-- Update whenever the text changes
+amountLabel1:GetPropertyChangedSignal("Text"):Connect(updateWave)
 print(67)
     local function fireButton(button)
         if typeof(button) ~= "Instance" then return end
@@ -160,6 +224,15 @@ wait(0.1)
 until game:GetService("Players").LocalPlayer.PlayerGui.ReactGameNewRewards.Frame.gameOver.Visible == true
 print('GAME OVER')
 wait(3)
+local rewards = {
+	[16] = 47,
+	[17] = 51,
+}
+
+gems += rewards[wave] or 0
+
+label.Text = "Gems: " .. gems
+
                 local Event = game:GetService("ReplicatedStorage").RemoteFunction
                 Event:InvokeServer("Voting", "Skip")
                 print("trying to skip")
@@ -167,25 +240,7 @@ wait(3)
 end
 end
 end)
-local amountLabel1 = game:GetService("Players").LocalPlayer.PlayerGui.ReactGameTopGameDisplay.Frame.waveTimer.container.value
 
-local currentWave = 0
-local maxWave = 0
-
-local function updateWave()
-    local current, max = amountLabel1.Text:match("(%d+)%s*/%s*(%d+)")
-
-    wave = tonumber(current) or 0
-    maxWave = tonumber(max) or 0
-
-
-end
-
--- Initial value
-updateWave()
-
--- Update whenever the text changes
-amountLabel1:GetPropertyChangedSignal("Text"):Connect(updateWave)
 local amountLabel2 = game:GetService("Players").LocalPlayer.PlayerGui.ReactGameTopGameDisplay.Frame.waveTimer.container.value
 
 local time = 0
