@@ -35,14 +35,6 @@ label.TextScaled = true
 label.Text = "Gems: 0"
 label.Parent = frame
 
--- Button
-local button = Instance.new("TextButton")
-button.Size = UDim2.new(0.8, 0, 0, 40)
-button.Position = UDim2.new(0.1, 0, 1, -50)
-button.BackgroundColor3 = Color3.fromRGB(70, 120, 255)
-button.TextColor3 = Color3.new(1, 1, 1)
-button.Text = "Increase"
-button.Parent = frame
 local amountLabel1 = game:GetService("Players").LocalPlayer.PlayerGui.ReactGameTopGameDisplay.Frame.waveTimer.container.value
 
 local currentWave = 0
