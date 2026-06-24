@@ -216,19 +216,18 @@ wait(0.1)
 until game:GetService("Players").LocalPlayer.PlayerGui.ReactGameNewRewards.Frame.gameOver.Visible == true
 print('GAME OVER')
 wait(3)
-local rewards = {
-	[16] = 47,
-	[17] = 51,
-}
-
-gems += rewards[wave] or 0
+if wave == 16 then
+	gems += 47
+elseif wave == 17 then
+	gems += 51
+end
 
 label.Text = "Gems: " .. gems
 
-                local Event = game:GetService("ReplicatedStorage").RemoteFunction
-                Event:InvokeServer("Voting", "Skip")
-                print("trying to skip")
-                wait(5)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer("Voting", "Skip")
+print("trying to skip")
+wait(5)
 end
 end
 end)
