@@ -1,6 +1,3 @@
-while true do
-print("nigger")
-end
 local player = game.Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 
@@ -38,7 +35,7 @@ label.TextScaled = true
 label.Text = "Gems: 0"
 label.Parent = frame
 
-local amountLabel1 = game:GetService("Players").LocalPlayer.PlayerGui.ReactGameTopGameDisplay.Frame.waveTimer.container.value
+local amountLabel1 = game:GetService("Players").LocalPlayer.PlayerGui.ReactGameTopGameDisplay.Frame.wave.container.value
 
 local currentWave = 0
 local maxWave = 0
@@ -112,6 +109,9 @@ Event:InvokeServer(
     }
 )
 else
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer("Voting", "Skip")
+wait(2)
 print('neckhurt')
 local Event = game:GetService("ReplicatedStorage").RemoteFunction
 Event:InvokeServer(
@@ -170,7 +170,7 @@ Event:InvokeServer(
 )
 repeat 
 wait(0.1)
-until cash >= 475
+until cash >= 750
 local Event = game:GetService("ReplicatedStorage").RemoteFunction
 Event:InvokeServer(
     "Troops",
@@ -188,7 +188,7 @@ Event:InvokeServer(
         Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
         Position = Vector3.new(22.7648525, 1.76591313, 11.167987)
     },
-    "Scout"
+    "EvolvedOperator"
 )   
 repeat 
 wait(0.1)
@@ -231,6 +231,7 @@ local Event = game:GetService("ReplicatedStorage").RemoteFunction
 Event:InvokeServer("Voting", "Skip")
 print("trying to skip")
 wait(5)
+
 end
 end
 end)
@@ -239,7 +240,7 @@ local amountLabel2 = game:GetService("Players").LocalPlayer.PlayerGui.ReactGameT
 
 local time = 0
 
-local function updateWave()
+local function updateWave1()
     local minutes, seconds = amountLabel2.Text:match("^(%d+):(%d+)$")
 
     if minutes and seconds then
@@ -251,34 +252,28 @@ local function updateWave()
 end
 
 -- Initial value
-updateWave()
+updateWave1()
 
 -- Update whenever the text changes
-amountLabel2:GetPropertyChangedSignal("Text"):Connect(updateWave)   
+amountLabel2:GetPropertyChangedSignal("Text"):Connect(updateWave1)   
+spawn(function()
 while true do
-    if (wave <= 3 and time <= 10)
-        or (wave > 7 and time <= 17)
-        or (wave <= 6 and time <= 14) 
-        or (wave <= 16 and time <= 34) then
+    pcall(function()
+        local player = game:GetService("Players").LocalPlayer
+        local remote = game:GetService("ReplicatedStorage").RemoteFunction
 
-        task.wait(0.6)
-
-        pcall(function()
-            if game:GetService("Players").LocalPlayer.PlayerGui.ReactOverridesVote.Frame.votes.Visible
-                and game:GetService("Players").LocalPlayer.PlayerGui.ReactOverridesVote.Frame.Visible then
-
-                local Event = game:GetService("ReplicatedStorage").RemoteFunction
-                Event:InvokeServer("Voting", "Skip")
-                print("trying to skip")
-            end
-        end)
-
-    elseif amountLabel2.Text == "∞" then
-        task.wait(1)
-
-        local Event = game:GetService("ReplicatedStorage").RemoteFunction
-        Event:InvokeServer("Voting", "Skip")
+if player.PlayerGui.ReactOverridesVote.Frame.votes.vote.Position ~= UDim2.new(2, 30, 0.5, 0) then
+            remote:InvokeServer("Voting", "Skip")
+            print("trying to skip")
     end
+    end)
+    local player = game:GetService("Players").LocalPlayer
+    local frame = player.PlayerGui.ReactOverridesVote.Frame
 
-    task.wait(0.1)
+if not frame:FindFirstChild("votes") then
+            game:GetService("ReplicatedStorage").RemoteFunction:InvokeServer("Voting", "Skip")
+            end
+
+    wait(0.01)
 end
+end)
