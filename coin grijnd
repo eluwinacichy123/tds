@@ -2,6 +2,23 @@ if not game:IsLoaded() then
     game.Loaded:Wait()
 end
 wait(2)
+-- Create ScreenGui
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MyGui"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Parent = screenGui
+textLabel.Size = UDim2.new(0, 300, 0, 60)
+textLabel.Position = UDim2.new(0.5, -150, 0.5, -30)
+textLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+textLabel.BorderSizePixel = 0
+textLabel.Text = "$" .. game.Players.LocalPlayer.Coins.Value
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel.TextScaled = true
+textLabel.Font = Enum.Font.GothamBold
+textLabel.Draggable = true
 spawn(function()
 local remote = game:GetService("ReplicatedStorage").RemoteFunction
 local Event = game:GetService("ReplicatedStorage").RemoteFunction
@@ -541,6 +558,7 @@ Event:InvokeServer(
 repeat
 wait(0.1)
 until game:GetService("Players").LocalPlayer.PlayerGui.ReactGameNewRewards.Frame.gameOver.Visible == true
+
 local Event = game:GetService("ReplicatedStorage").Network.GameManager["RE:Rematch"]
 Event:FireServer()
 
