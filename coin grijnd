@@ -6,6 +6,7 @@ spawn(function()
 local screenGui = Instance.new("ScreenGui")
 screenGui.Name = "MyGui"
 screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+screenGui.ResetOnSpawn = false
 
 
 local textLabel = Instance.new("TextLabel")
