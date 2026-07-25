@@ -97,13 +97,11 @@ local function updateCash()
 
     if newCash > cash then
         cash = newCash
-        print("Cash increased:", cash)
 
         -- Put your code here when cash increases
 
     elseif newCash < cash then
         cash = 0
-        print("Cash went down, reset to 0")
     end
 end
 
