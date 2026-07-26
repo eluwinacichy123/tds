@@ -56,7 +56,8 @@ Event:InvokeServer(
 )
 end)
 wait(6)
-remote:InvokeServer("Voting", "Skip")
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer("Voting", "Skip")
 local Event = game:GetService("ReplicatedStorage").RemoteFunction
 Event:InvokeServer(
     "TicketsManager",
