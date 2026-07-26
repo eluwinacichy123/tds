@@ -984,7 +984,8 @@ Event:InvokeServer(
         Data = {}
     }
 )
-wait(1)
+
 end
+wait(1)
 end
 end)
