@@ -1,0 +1,1036 @@
+if not game:IsLoaded() then
+    game.Loaded:Wait()
+end
+wait(2)
+spawn(function()
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "MyGui"
+screenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+screenGui.ResetOnSpawn = false
+
+
+local player = game.Players.LocalPlayer
+local coins = player:WaitForChild("Gems")
+
+local textLabel = Instance.new("TextLabel")
+textLabel.Parent = screenGui
+textLabel.Size = UDim2.new(0, 300, 0, 60)
+textLabel.Position = UDim2.new(0.5, -150, 0.5, -30)
+textLabel.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+textLabel.BorderSizePixel = 0
+textLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+textLabel.TextScaled = true
+textLabel.Font = Enum.Font.GothamBold
+textLabel.Draggable = true
+local function updateCoins()
+	textLabel.Text = "$" .. coins.Value
+end
+updateCoins()
+coins.Changed:Connect(updateCoins)
+end)
+spawn(function()
+while true do
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "TicketsManager",
+    "UnlockTimeScale"
+)
+wait(0.1)
+local Event = game:GetService("ReplicatedStorage").RemoteEvent
+Event:FireServer(
+    "TicketsManager",
+    "CycleTimeScale"
+)
+wait(0.1)
+local Event = game:GetService("ReplicatedStorage").RemoteEvent
+Event:FireServer(
+    "TicketsManager",
+    "CycleTimeScale"
+)
+wait(0.1)
+local Players = game:GetService("Players")
+
+local amountLabel = Players.LocalPlayer.PlayerGui.ReactUniversalHotbar.Frame.values.cash.amount
+
+local text = amountLabel.Text
+text = text:gsub("%$", "")
+text = text:gsub(",", "")
+
+local cash = tonumber(text) or 0
+
+local function updateCash()
+    local newText = amountLabel.Text
+    newText = newText:gsub("%$", "")
+    newText = newText:gsub(",", "")
+
+    local newCash = tonumber(newText) or 0
+
+    if newCash > cash then
+        cash = newCash
+    elseif newCash < cash then
+        local oldCash = cash
+        cash = 0
+
+        task.delay(1, function()
+            cash = oldCash
+        end)
+    end
+end
+
+amountLabel:GetPropertyChangedSignal("Text"):Connect(updateCash)
+repeat 
+wait(0.2)
+until cash >= 900
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-12.238503456116, 1.5587378740311, 24.396907806396)
+    },
+    "Farm"
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-12.32833480835, 1.5332025289536, 27.993186950684)
+    },
+    "Farm"
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-12.307766914368, 1.4620662927628, 31.639921188354)
+    },
+    "Farm"
+)
+repeat 
+wait(0.2)
+until cash >= 200
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[1]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 200
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[2]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 200
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[3]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 300
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-12.206051826477, 1.3667049407959, 35.299415588379)
+    },
+    "Farm"
+)
+repeat 
+wait(0.2)
+until cash >= 300
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-12.340504646301, 1.2656012773514, 38.956020355225)
+    },
+    "Farm"
+)
+repeat 
+wait(0.2)
+until cash >= 300
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-15.98849105835, 1.2049913406372, 38.970138549805)
+    },
+    "Farm"
+)
+repeat 
+wait(0.2)
+until cash >= 200
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[4]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 200
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[5]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 200
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[6]
+    }
+)
+for i = 1,6 do
+repeat 
+wait(0.1)
+until cash >= 600
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[i]
+    }
+)
+wait(0.1)
+end
+repeat 
+wait(0.2)
+until cash >= 650
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(11.31880569458, 1.0792589187622, 21.130071640015)
+    },
+    "Electroshocker"
+)
+repeat 
+wait(0.2)
+until cash >= 400
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[7]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 950
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[7]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 1200
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-15.936419487, 1.446478843689, 35.319671630859)
+    },
+    "Farm"
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-15.965832710266, 1.5303471088409, 31.613924026489)
+    },
+    "Farm"
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-16.049257278442, 1.5340056419373, 27.850736618042)
+    },
+    "Farm"
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(-15.932334899902, 1.5275008678436, 24.295944213867)
+    },
+    "Farm"
+)
+for i = 8,11 do
+repeat 
+wait(0.2)
+until cash >= 200
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[i]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 600
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[i]
+    }
+)
+end
+for i = 1,7 do
+repeat 
+wait(0.2)
+until cash >= 1250
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[i]
+    }
+)
+end
+for i = 8,11 do
+repeat 
+wait(0.2)
+until cash >= 1250
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[i]
+    }
+)
+end
+repeat 
+wait(0.2)
+until cash >= 3600
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(5.1358785629272, 1.3366680145264, 22.211574554443)
+    },
+    "EvolvedKingpin"
+)
+repeat 
+wait(0.2)
+until cash >= 1400
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[12]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[12]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 6000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[12]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 650
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(8.3513326644897, 1.2335186004639, 21.740058898926)
+    },
+    "Electroshocker"
+)
+repeat 
+wait(0.2)
+until cash >= 400
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[13]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 950
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[13]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 3000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[13]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 3000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[7]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 650
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(11.326162338257, 0.68274819850922, 18.094524383545)
+    },
+    "Electroshocker"
+)
+repeat 
+wait(0.2)
+until cash >= 400
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[14]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 950
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[14]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 3000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[14]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 650
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(8.3247375488281, 0.80439150333405, 18.512214660645)
+    },
+    "Electroshocker"
+)
+repeat 
+wait(0.2)
+until cash >= 400
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[15]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 950
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[15]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 3000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[15]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 650
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(12.004528045654, 1.2530248165131, 24.362606048584)
+    },
+    "Electroshocker"
+)
+repeat 
+wait(0.2)
+until cash >= 400
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[16]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 950
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[16]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 3000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[16]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 3600
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(5.095498085022, 1.0203795433044, 19.001613616943)
+    },
+    "EvolvedKingpin"
+)
+repeat 
+wait(0.2)
+until cash >= 1400
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[17]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[17]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 6000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[17]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 14000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[12],
+        Path = 2
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[12],
+        Name = "Unit 3",
+        Value = "Bouncer"
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[12],
+        Name = "Unit 2",
+        Value = "Bouncer"
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[12],
+        Name = "Unit 1",
+        Value = "Bouncer"
+    }
+)
+
+repeat 
+wait(0.2)
+until cash >= 14000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[17],
+        Path = 2
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[17],
+        Name = "Unit 3",
+        Value = "Bouncer"
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[17],
+        Name = "Unit 2",
+        Value = "Bouncer"
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[17],
+        Name = "Unit 1",
+        Value = "Bouncer"
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[15]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[13]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[7]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[14]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[15]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(2.1308326721191, 1.3782529830933, 22.357158660889)
+    },
+    "EvolvedKingpin"
+)
+repeat 
+wait(0.2)
+until cash >= 1400
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[18]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[18]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 6000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[18]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 14000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[18],
+        Path = 2
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[18],
+        Name = "Unit 1",
+        Value = "Bouncer"
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[18],
+        Name = "Unit 2",
+        Value = "Bouncer"
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[18],
+        Name = "Unit 3",
+        Value = "Bouncer"
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Place",
+    {
+        Rotation = CFrame.new(0, 0, 0, 1, -0, 0, 0, 1, -0, 0, 0, 1),
+        Position = Vector3.new(1.8906383514404, 1.2801605463028, 19.094318389893)
+    },
+    "EvolvedKingpin"
+)
+repeat 
+wait(0.2)
+until cash >= 1400
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[19]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 4000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[19]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 6000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[19]
+    }
+)
+repeat 
+wait(0.2)
+until cash >= 14000
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Upgrade",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[19],
+        Path = 2
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[19],
+        Name = "Unit 1",
+        Value = "Bouncer"
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[19],
+        Name = "Unit 2",
+        Value = "Bouncer"
+    }
+)
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer(
+    "Troops",
+    "Option",
+    "Set",
+    {
+        Troop = workspace.Towers:GetChildren()[19],
+        Name = "Unit 3",
+        Value = "Bouncer"
+    }
+)
+repeat
+wait(0.1)
+until game:GetService("Players").LocalPlayer.PlayerGui.ReactGameNewRewards.Frame.gameOver.Visible == true
+wait(6)
+end
+end)
+spawn(function()
+wait(5)
+while true do
+local Event = game:GetService("ReplicatedStorage").RemoteFunction
+Event:InvokeServer("Voting", "Skip")
+wait(1)
+end
+end)
